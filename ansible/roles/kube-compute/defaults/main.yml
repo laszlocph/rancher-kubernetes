@@ -1,0 +1,3 @@
+---
+rancher_agent_name: 'rancher_agent'
+rancher_port: 8080

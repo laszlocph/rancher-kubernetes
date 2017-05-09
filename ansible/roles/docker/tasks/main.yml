@@ -1,0 +1,30 @@
+---
+- apt_key:
+    keyserver: hkp://p80.pool.sks-keyservers.net:80
+    id: 58118E89F3A912897C070ADBF76221572C52609D
+
+- apt_repository:
+    repo: deb https://apt.dockerproject.org/repo ubuntu-xenial main
+    state: present
+
+- apt:
+    name: aptitude
+    update_cache: yes
+    cache_valid_time: 36000
+
+- apt: name={{item}} state=installed
+  with_items:
+    - language-pack-en
+    - docker-engine=1.12.6-0~ubuntu-xenial
+    - python-dev
+    - python-setuptools
+    - python-httplib2
+
+- name: Install pip
+  easy_install:
+    name: pip
+
+- name: Install docker-py
+  pip:
+    name: docker-py
+    state: present

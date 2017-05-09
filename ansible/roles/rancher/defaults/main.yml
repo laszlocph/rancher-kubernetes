@@ -1,0 +1,4 @@
+---
+rancher_name: 'rancher_server'
+rancher_version: 'stable'
+rancher_port: 8080

@@ -1,0 +1,68 @@
+{
+  "data": {
+    "fields": {
+      "stacks": [
+        {
+          "name": "kubernetes",
+          "templateId": "library:infra*k8s"
+        },
+        {
+          "name": "network-services",
+          "templateId": "library:infra*network-services"
+        },
+        {
+          "name": "ipsec",
+          "templateId": "library:infra*ipsec"
+        },
+        {
+          "name": "healthcheck",
+          "templateId": "library:infra*healthcheck"
+        }
+      ]
+    }
+  },
+  "description": "Default Kubernetes template",
+  "externalId": "catalog://library:project*kubernetes:0",
+  "isPublic": true,
+  "kind": "projectTemplate",
+  "name": "Kubernetes",
+  "state": "active",
+  "transitioning": "no",
+  "transitioningMessage": null,
+  "transitioningProgress": 0,
+  "stacks": [
+    {
+      "type": "catalogTemplate",
+      "name": "kubernetes",
+      "templateId": "library:infra*k8s",
+      "answers": {
+        "CONSTRAINT_TYPE": "required",
+        "CLOUD_PROVIDER": "rancher",
+        "REGISTRY": "",
+        "DISABLE_ADDONS": "false",
+        "POD_INFRA_CONTAINER_IMAGE": "gcr.io/google_containers/pause-amd64:3.0",
+        "INFLUXDB_HOST_PATH": "",
+        "EMBEDDED_BACKUPS": true,
+        "BACKUP_PERIOD": "15m0s",
+        "BACKUP_RETENTION": "24h",
+        "ETCD_HEARTBEAT_INTERVAL": "500",
+        "ETCD_ELECTION_TIMEOUT": "5000"
+      }
+    },
+    {
+      "type": "catalogTemplate",
+      "name": "network-services",
+      "templateId": "library:infra*network-services"
+    },
+    {
+      "type": "catalogTemplate",
+      "name": "ipsec",
+      "templateId": "library:infra*ipsec"
+    },
+    {
+      "type": "catalogTemplate",
+      "name": "healthcheck",
+      "templateId": "library:infra*healthcheck"
+    }
+  ]
+}

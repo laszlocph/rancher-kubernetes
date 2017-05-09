@@ -1,0 +1,38 @@
+- hosts: tag_Type_KubernetesEtcd
+  vars:
+    rancher_server: "{{ hostvars[groups.tag_Type_RancherMaster[0]].ec2_private_ip_address }}"
+  remote_user: ubuntu
+  gather_facts: no
+  become: yes
+  pre_tasks:
+  - name: install python 2
+    raw: sudo apt-get -y install python-simplejson
+  roles:
+    - docker
+    - kube-etcd
+
+- hosts: tag_Type_KubernetesMaster
+  vars:
+    rancher_server: "{{ hostvars[groups.tag_Type_RancherMaster[0]].ec2_private_ip_address }}"
+  remote_user: ubuntu
+  gather_facts: no
+  become: yes
+  pre_tasks:
+  - name: install python 2
+    raw: sudo apt-get -y install python-simplejson
+  roles:
+    - docker
+    - kube-master
+
+- hosts: tag_Type_KubernetesCompute
+  vars:
+    rancher_server: "{{ hostvars[groups.tag_Type_RancherMaster[0]].ec2_private_ip_address }}"
+  remote_user: ubuntu
+  gather_facts: no
+  become: yes
+  pre_tasks:
+  - name: install python 2
+    raw: sudo apt-get -y install python-simplejson
+  roles:
+    - docker
+    - kube-compute

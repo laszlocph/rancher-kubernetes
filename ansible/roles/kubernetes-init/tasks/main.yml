@@ -1,0 +1,39 @@
+---
+- pause:
+    minutes: 2
+
+- name: Get the default project id
+  action: uri
+      method=GET
+      status_code=200
+      url="http://{{ rancher_server }}:{{ rancher_port }}/v1/projects" return_content=yes
+  register: project_id
+
+#- name: Deactivate the default Cattle environment
+#  action: uri
+#      method=POST
+#      status_code=200
+#      url="http://{{ rancher_server }}:{{ rancher_port }}/v1/projects/{{ project_id.json['data'][0]['id'] }}?action=deactivate" return_content=yes
+
+- name: Get the Kubernetes project template
+  action: uri
+      method=GET
+      status_code=200
+      url="http://{{ rancher_server }}:{{ rancher_port }}/v2-beta/projectTemplates?name=kubernetes" return_content=yes
+  register: template_id
+
+- name: Enable resiliency planes in the Kubernetes template
+  action: uri
+      method=PUT
+      status_code=200
+      url="http://{{ rancher_server }}:{{ rancher_port }}/v2-beta/projecttemplates/{{ template_id.json['data'][0]['id'] }}" return_content=yes
+      body="{{ lookup('template','../templates/edit-template-request.j2') }}"
+      body_format=json
+
+- name: Create a Kubernetes environment
+  action: uri
+      method=POST
+      status_code=201
+      url="http://{{ rancher_server }}:{{ rancher_port }}/v2-beta/projects/" return_content=yes
+      body="{{ lookup('template','../templates/create-request.j2') }}"
+      body_format=json
