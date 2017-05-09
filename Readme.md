@@ -1,6 +1,8 @@
-# Terraform and Ansible scripting to bring up a plane isolated Kubernetes cluster with Rancher
+# Rancher Kubernetes scripting
 
-rather crude version of it..
+Terraform and Ansible scripting to bring up a plane isolated Kubernetes cluster with Rancher.
+
+A rather crude version of it..
 
 ## Usage
 
@@ -18,5 +20,6 @@ ansible -i ansible/ec2.py tag_Type_Test -u ubuntu -m ping
 ```
 
 ## Inspired by
-https://github.com/galal-hussein/Rancher-Ansible
-http://rancher.com/aws-rancher-building-resilient-stack/
+
+* https://github.com/galal-hussein/Rancher-Ansible
+* http://rancher.com/aws-rancher-building-resilient-stack/
