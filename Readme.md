@@ -2,7 +2,9 @@
 
 Terraform and Ansible scripting to bring up a plane isolated Kubernetes cluster with Rancher.
 
-A rather crude version of it..
+![Isolated planes](hosts.png)
+
+rather crude version of it..
 
 ## Usage
 
